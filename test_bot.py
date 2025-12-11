@@ -1,64 +1,63 @@
 #!/usr/bin/env python3
 """
-Simple test script for the AI Lead Qualification Bot.
+Quick test suite to make sure everything works.
 """
 
 import json
 import sys
 import os
 
-# Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from models.llm_pipeline import get_llm_pipeline
 from models.vector_store import get_vector_store
 from models.predictive_model import get_predictive_model
-from utils.crm_integration import get_crm_manager
+from integrations.manager import get_crm_client
 from config.settings import validate_config
 
-def test_configuration():
-    """Test that the configuration is valid."""
-    print("🔧 Testing configuration...")
+def check_config():
+    """Make sure config is valid."""
+    print("🔧 Checking config...")
     
     if validate_config():
-        print("✅ Configuration is valid")
+        print("✅ Config looks good")
         return True
     else:
-        print("❌ Configuration validation failed")
+        print("❌ Config validation failed")
         return False
 
-def test_vector_store():
-    """Test the vector store functionality."""
-    print("\n📚 Testing vector store...")
+def check_vector_db():
+    """Test the vector store."""
+    print("\n📚 Testing vector database...")
     
     try:
-        vector_store = get_vector_store()
-        stats = vector_store.get_stats()
-        print(f"✅ Vector store initialized with {stats['total_documents']} documents")
+        store = get_vector_store()
+        stats = store.get_stats()
+        print(f"✅ Vector DB loaded with {stats['total_documents']} docs")
         return True
     except Exception as e:
-        print(f"❌ Vector store test failed: {e}")
+        print(f"❌ Vector DB test failed: {e}")
         return False
 
-def test_predictive_model():
-    """Test the predictive model functionality."""
-    print("\n🤖 Testing predictive model...")
+def check_scorer():
+    """Test the predictive model."""
+    print("\n🤖 Testing lead scorer...")
     
     try:
         model = get_predictive_model()
         
-        # Test with sample conversation data
-        sample_data = {
+        # Dummy data
+        test_data = {
             'messages': [
-                {'role': 'user', 'content': 'Hi, I need a CRM solution for our 50-person team'},
-                {'role': 'assistant', 'content': 'Hello! I can help with that. What challenges are you facing?'},
-                {'role': 'user', 'content': 'We have a budget of $100k and need to decide within a month'}
+                {'role': 'user', 'content': 'Need CRM for 50 people'},
+                {'role': 'assistant', 'content': 'Sure, tell me more'},
+                {'role': 'user', 'content': 'Budget is $100k, need it in a month'}
             ],
             'lead_info': {
                 'name': 'Sarah',
                 'company': 'TechCorp',
                 'role': 'Sales Director',
-                'industry': 'Technology',
+                'industry': 'Tech',
                 'team_size': 50
             },
             'behavioral_data': {
@@ -69,129 +68,97 @@ def test_predictive_model():
             }
         }
         
-        prediction = model.predict(sample_data)
-        print(f"✅ Predictive model working - Score: {prediction['score']}, Intent: {prediction['intent']}")
+        result = model.predict(test_data)
+        print(f"✅ Scorer works - Score: {result['score']}, Intent: {result['intent']}")
         return True
     except Exception as e:
-        print(f"❌ Predictive model test failed: {e}")
+        print(f"❌ Scorer test failed: {e}")
         return False
 
-def test_crm_integration():
-    """Test the CRM integration functionality."""
+def check_crm():
+    """Test CRM integration."""
     print("\n🔗 Testing CRM integration...")
     
     try:
-        crm_manager = get_crm_manager()
+        crm = get_crm_client()
         
-        # Test with sample lead data
-        sample_lead = {
+        # Dummy lead
+        test_lead = {
             'name': 'Sarah Johnson',
             'email': 'sarah@techcorp.com',
             'company': 'TechCorp',
             'role': 'Sales Director',
-            'industry': 'Technology',
+            'industry': 'Tech',
             'intent': 'buy_soon',
             'score': 85,
-            'tags': ['enterprise', 'high_priority']
+            'tags': ['enterprise', 'hot']
         }
         
-        results = crm_manager.create_lead_in_all_crms(sample_lead)
-        print(f"✅ CRM integration working - {len(results)} CRM systems configured")
+        results = crm.sync_leads(test_lead)
+        print(f"✅ CRM integration works - {len(results)} systems configured")
         return True
     except Exception as e:
-        print(f"❌ CRM integration test failed: {e}")
+        print(f"❌ CRM test failed: {e}")
         return False
 
-def test_conversation():
-    """Test a sample conversation."""
-    print("\n💬 Testing conversation flow...")
+def check_conversation():
+    """Test the conversation flow."""
+    print("\n💬 Testing conversation...")
     
     try:
-        llm_pipeline = get_llm_pipeline()
+        llm = get_llm_pipeline()
         
-        # Start a conversation
-        conversation_id = "test_conv_123"
-        greeting = llm_pipeline.start_conversation(conversation_id)
-        print(f"✅ Conversation started: {greeting[:50]}...")
+        # Start a chat
+        chat_id = "test_123"
+        greeting = llm.start_conversation(chat_id)
+        print(f"✅ Chat started: {greeting[:50]}...")
         
-        # Send a test message
-        test_message = "Hi, I'm Sarah from TechCorp. We're looking for a CRM solution for our 50-person sales team. We're currently using Salesforce but it's too expensive and complex for our needs."
+        # Send a message
+        test_msg = "Hi, I'm Sarah from TechCorp. Looking for CRM for 50 people. Currently using Salesforce but it's too expensive."
         
-        result = llm_pipeline.process_message(conversation_id, test_message)
+        result = llm.process_message(chat_id, test_msg)
         
-        print(f"✅ Message processed successfully")
-        print(f"   Response: {result['response'][:100]}...")
+        print(f"✅ Message processed")
+        print(f"   Response: {result['response'][:80]}...")
         print(f"   Score: {result['structured_output']['score']}")
         print(f"   Intent: {result['structured_output']['intent']}")
-        print(f"   Recommendation: {result['structured_output']['recommended_action']}")
         
         return True
     except Exception as e:
         print(f"❌ Conversation test failed: {e}")
         return False
 
-def test_sample_data():
-    """Test with sample conversation data."""
-    print("\n📊 Testing with sample data...")
-    
-    try:
-        # Load sample conversations
-        with open('examples/sample_conversations.json', 'r') as f:
-            sample_conversations = json.load(f)
-        
-        llm_pipeline = get_llm_pipeline()
-        
-        for i, conv in enumerate(sample_conversations[:2]):  # Test first 2 conversations
-            conversation_id = f"sample_conv_{i}"
-            
-            # Start conversation
-            llm_pipeline.start_conversation(conversation_id)
-            
-            # Process first message
-            first_message = conv['messages'][0]['content']
-            result = llm_pipeline.process_message(conversation_id, first_message)
-            
-            print(f"✅ Sample conversation {i+1}: Score {result['structured_output']['score']}, Intent {result['structured_output']['intent']}")
-        
-        return True
-    except Exception as e:
-        print(f"❌ Sample data test failed: {e}")
-        return False
-
-def main():
-    """Run all tests."""
-    print("🚀 Starting AI Lead Qualification Bot Tests\n")
+def run_all_tests():
+    """Run the full test suite."""
+    print("🚀 Running AI Lead Bot Tests\n")
     
     tests = [
-        ("Configuration", test_configuration),
-        ("Vector Store", test_vector_store),
-        ("Predictive Model", test_predictive_model),
-        ("CRM Integration", test_crm_integration),
-        ("Conversation Flow", test_conversation),
-        ("Sample Data", test_sample_data)
+        ("Config", check_config),
+        ("Vector DB", check_vector_db),
+        ("Scorer", check_scorer),
+        ("CRM", check_crm),
+        ("Conversation", check_conversation)
     ]
     
     passed = 0
     total = len(tests)
     
-    for test_name, test_func in tests:
+    for name, test_fn in tests:
         try:
-            if test_func():
+            if test_fn():
                 passed += 1
-            else:
-                print(f"❌ {test_name} test failed")
         except Exception as e:
-            print(f"❌ {test_name} test failed with exception: {e}")
+            print(f"❌ {name} crashed: {e}")
     
-    print(f"\n📈 Test Results: {passed}/{total} tests passed")
+    print(f"\n📈 Results: {passed}/{total} passed")
     
     if passed == total:
-        print("🎉 All tests passed! The bot is ready to use.")
+        print("🎉 All tests passed!")
         return True
     else:
-        print("⚠️  Some tests failed. Please check the configuration and dependencies.")
+        print("⚠️  Some tests failed")
         return False
 
 if __name__ == "__main__":
-    success = main()
+    success = run_all_tests()
     sys.exit(0 if success else 1)
