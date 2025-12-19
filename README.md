@@ -1,408 +1,279 @@
-<div align="center">
+# AI Lead Qualification Bot
 
-# 🤖 AI Lead Qualification Bot
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=6366F1&center=true&vCenter=true&width=940&lines=AI-Powered+Lead+Qualification;Predictive+Scoring+%26+Intent+Detection;100%25+Open+Source+%7C+No+External+APIs" alt="Typing SVG" />
+An intelligent lead qualification system that automates prospect evaluation through conversational AI and predictive analytics.
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Transformers](https://img.shields.io/badge/🤗_Transformers-Latest-yellow?style=for-the-badge)](https://huggingface.co/transformers/)
-[![LangChain](https://img.shields.io/badge/🦜_LangChain-Powered-green?style=for-the-badge)](https://langchain.com/)
-[![Gradio](https://img.shields.io/badge/Gradio-UI-orange?style=for-the-badge&logo=gradio&logoColor=white)](https://gradio.app/)
-[![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
+## Overview
 
-<p align="center">
-  <strong>Transform your lead qualification process with AI-powered conversations, predictive scoring, and intelligent CRM integration</strong>
-</p>
+This system combines natural language processing with machine learning to:
 
-<p align="center">
-  <a href="#-features">Features</a> •
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-demo">Demo</a> •
-  <a href="#-architecture">Architecture</a> •
-  <a href="#-documentation">Documentation</a>
-</p>
+- Conduct automated qualification conversations with prospects
+- Generate real-time lead scores based on conversation analysis
+- Extract key buying signals and intent indicators
+- Integrate seamlessly with existing CRM workflows
+- Provide structured data output for sales teams
 
----
+**Key Benefits:**
+- Reduces manual qualification time
+- Improves lead scoring accuracy
+- Standardizes qualification processes
+- Scales prospect engagement
 
-### 🎯 **Built with 100% Open-Source Models | No External API Dependencies**
+## Core Features
 
-</div>
+### Conversational Intelligence
+- **Natural Language Processing**: Powered by Mistral-7B for human-like interactions
+- **Context Retention**: Maintains conversation history for coherent multi-turn dialogues
+- **Adaptive Questioning**: Dynamically adjusts questions based on prospect responses
 
-## 📊 What is This?
+### Predictive Analytics
+- **Real-time Scoring**: Generates lead scores (0-100) during conversations
+- **Intent Classification**: Categorizes prospects by purchase readiness
+- **Signal Detection**: Identifies key buying indicators and pain points
 
-A complete **AI-powered predictive lead qualification system** for SaaS companies that:
+### Knowledge Integration
+- **Document Retrieval**: RAG-based system for accessing product information
+- **Competitive Intelligence**: Integrated battlecards for handling objections
+- **Case Study Access**: Relevant success stories for prospect engagement
 
-- 💬 **Engages leads** with natural, human-like conversations
-- 🧠 **Predicts lead quality** using machine learning models
-- 📈 **Scores in real-time** based on conversation signals and behavioral data
-- 🎯 **Classifies intent** (buy_soon, considering, researching, not_interested)
-- 🔗 **Integrates with CRMs** (HubSpot, Salesforce)
-- 📋 **Outputs structured JSON** for easy integration
+### CRM Connectivity
+- **Multi-platform Support**: HubSpot and Salesforce integrations
+- **Automated Data Entry**: Creates and updates lead records automatically
+- **Custom Tagging**: Applies relevant tags based on conversation insights
 
-<div align="center">
+## Example Usage
 
-### 🚀 **300% Improvement in Lead Quality | 50% Reduction in Qualification Time**
-
-</div>
-
----
-
-## ✨ Features
-
-<table>
-<tr>
-<td width="50%">
-
-### 🤖 Conversational AI
-- Natural language processing with Mistral-7B
-- Context-aware responses
-- Automatic qualification questions
-- Multi-turn conversation handling
-
-</td>
-<td width="50%">
-
-### 🎯 Predictive Scoring
-- Real-time lead scoring (0-100)
-- Intent classification
-- Signal extraction
-- ML-based predictions
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 📚 Knowledge Base (RAG)
-- Product documentation retrieval
-- Customer case studies
-- Competitor battlecards
-- Semantic search with FAISS
-
-</td>
-<td width="50%">
-
-### 🔗 CRM Integration
-- HubSpot integration
-- Salesforce integration
-- Automatic lead creation
-- Tag and categorization
-
-</td>
-</tr>
-</table>
-
----
-
-## 🎬 Demo
-
-<div align="center">
-
-### 💬 Sample Conversation
-
+### Conversation Flow
 ```
-User: Hi, I'm Sarah from TechCorp. We're looking for a CRM solution 
-      for our 50-person sales team. Currently using Salesforce but 
-      it's too expensive and complex.
+Prospect: "Hi, I'm looking for a CRM solution for my team of 25 people. 
+          We're currently using spreadsheets but need something more robust."
 
-Bot:  Hello Sarah! I'd be happy to help TechCorp find the right solution. 
-      I understand you're looking to move away from Salesforce due to 
-      cost and complexity. Can you tell me more about your timeline 
-      for making this decision?
+Bot: "I understand you're looking to upgrade from spreadsheets to a proper CRM. 
+     That's a common challenge for growing teams. What's driving this decision 
+     right now - are you facing specific pain points with your current process?"
 
-User: We need to decide within the next month. Budget is around $100k.
+Prospect: "Yes, we're losing track of leads and our sales process is inconsistent. 
+          We need to implement something within the next quarter."
 ```
 
-### 📊 Structured Output
-
+### System Output
 ```json
 {
-  "lead": {
-    "name": "Sarah",
-    "company": "TechCorp",
-    "role": "Sales Director",
-    "team_size": 50
+  "prospect_profile": {
+    "company_size": 25,
+    "current_solution": "spreadsheets",
+    "decision_timeline": "next_quarter"
   },
-  "intent": "buy_soon",
-  "score": 85,
-  "top_signals": [
-    "mentioned current tool (Salesforce)",
-    "specified team size (50 people)",
-    "clear budget ($100k)",
-    "urgent timeline (1 month)"
+  "qualification_score": 78,
+  "intent_level": "high_interest",
+  "key_signals": [
+    "specific_pain_points_identified",
+    "defined_timeline",
+    "team_size_specified"
   ],
-  "recommended_action": "schedule_demo",
-  "crm_tags": ["enterprise", "salesforce_migration", "hot_lead"]
+  "next_action": "schedule_demo",
+  "crm_tags": ["mid_market", "spreadsheet_migration", "q1_timeline"]
 }
 ```
 
-</div>
+## System Architecture
 
----
+The system follows a modular architecture with clear separation of concerns:
 
-## 🏗️ Architecture
-
-<div align="center">
-
-```mermaid
-graph TB
-    A[👤 User Input] --> B[🎨 Gradio UI]
-    B --> C[🦜 LangChain Orchestration]
-    C --> D[🤖 LLM Pipeline]
-    C --> E[📚 Vector Store RAG]
-    C --> F[🎯 Predictive Model]
-    D --> G[💬 Response Generation]
-    E --> G
-    F --> H[📊 Lead Scoring]
-    G --> I[📋 Structured Output]
-    H --> I
-    I --> J[🔗 CRM Integration]
-    J --> K[💾 HubSpot/Salesforce]
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   User Input    │───▶│  Gradio Interface │───▶│ Bot Service     │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                                                         │
+                       ┌─────────────────────────────────┼─────────────────────────────────┐
+                       │                                 ▼                                 │
+                       │                    ┌─────────────────┐                           │
+                       │                    │ LLM Pipeline    │                           │
+                       │                    └─────────────────┘                           │
+                       │                                 │                                 │
+                       ▼                                 ▼                                 ▼
+            ┌─────────────────┐              ┌─────────────────┐              ┌─────────────────┐
+            │ Vector Store    │              │ Predictive      │              │ CRM Integration │
+            │ (Knowledge RAG) │              │ Scoring Model   │              │ Manager         │
+            └─────────────────┘              └─────────────────┘              └─────────────────┘
 ```
 
-</div>
+### Technology Components
 
-### 🔧 Technology Stack
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| **Interface** | Gradio | Web-based user interaction |
+| **Orchestration** | LangChain | Workflow management |
+| **Language Model** | Mistral-7B | Conversation generation |
+| **Embeddings** | Sentence Transformers | Text vectorization |
+| **Vector Database** | FAISS | Document retrieval |
+| **ML Framework** | LightGBM | Predictive scoring |
+| **Runtime** | Python 3.8+ | Core application |
 
-<div align="center">
+## Installation & Setup
 
-| Component | Technology |
-|-----------|-----------|
-| **LLM** | Mistral-7B-Instruct / DialoGPT |
-| **Embeddings** | sentence-transformers/all-MiniLM-L6-v2 |
-| **Vector DB** | FAISS |
-| **ML Model** | LightGBM |
-| **Orchestration** | LangChain |
-| **UI** | Gradio |
-| **Language** | Python 3.8+ |
+### System Requirements
+- Python 3.8 or higher
+- 8GB RAM minimum
+- Internet connection for initial model downloads
 
-</div>
+### Installation Steps
 
----
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/RohithCherukuri816/AI-Lead-Qualification-Bot.git
+   cd AI-Lead-Qualification-Bot
+   ```
 
-## 🚀 Quick Start
+2. **Setup Environment**
+   ```bash
+   python -m venv venv
+   
+   # Windows
+   venv\Scripts\activate
+   
+   # macOS/Linux
+   source venv/bin/activate
+   ```
 
-### Prerequisites
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-✅ Python 3.8 or higher
-✅ 8GB RAM minimum
-✅ Internet connection (for model downloads)
-```
+4. **Configure Environment** (Optional)
+   
+   Create `.env` file with your API credentials:
+   ```bash
+   HUGGINGFACE_TOKEN=your_token_here
+   HUBSPOT_API_KEY=your_hubspot_key
+   SALESFORCE_API_KEY=your_salesforce_key
+   ENVIRONMENT=development
+   ```
 
-### Installation
+5. **Launch Application**
+   ```bash
+   python app.py
+   ```
+   
+   Access the interface at `http://localhost:7860`
 
-<details open>
-<summary><b>📦 Step 1: Clone the Repository</b></summary>
-
-```bash
-git clone https://github.com/RohithCherukuri816/AI-Lead-Qualification-Bot.git
-cd AI-Lead-Qualification-Bot
-```
-
-</details>
-
-<details open>
-<summary><b>🔧 Step 2: Create Virtual Environment</b></summary>
-
-```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate it
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-```
-
-</details>
-
-<details open>
-<summary><b>📥 Step 3: Install Dependencies</b></summary>
-
-```bash
-pip install -r requirements.txt
-```
-
-</details>
-
-<details open>
-<summary><b>⚙️ Step 4: Configure (Optional)</b></summary>
-
-Edit `.env` file to add your API keys:
-
-```bash
-HUGGINGFACE_TOKEN=your_token_here
-HUBSPOT_API_KEY=your_hubspot_key
-SALESFORCE_API_KEY=your_salesforce_key
-ENVIRONMENT=development
-```
-
-</details>
-
-<details open>
-<summary><b>🎯 Step 5: Run the Application</b></summary>
-
-```bash
-python app.py
-```
-
-Open your browser to **http://localhost:7860** 🎉
-
-</details>
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 AI-Lead-Qualification-Bot/
+├── app.py                      # Main application entry point
+├── test_bot.py                 # Test suite
+├── requirements.txt            # Python dependencies
+├── .env                        # Environment configuration
 │
-├── 🎨 app.py                      # Main Gradio application
-├── 🧪 test_bot.py                 # Comprehensive test suite
-├── 📦 requirements.txt            # Python dependencies
-├── ⚙️  .env                       # Environment configuration
+├── config/
+│   ├── prompts.py             # Conversation templates
+│   └── settings.py            # System configuration
 │
-├── 📂 config/
-│   ├── prompts.py                # Prompt templates
-│   └── settings.py               # Configuration settings
+├── services/
+│   └── bot_service.py         # Core conversation logic
 │
-├── 📂 services/
-│   └── bot_service.py            # Core bot logic
+├── models/
+│   ├── llm_pipeline.py        # Language model interface
+│   ├── predictive_model.py    # Scoring algorithms
+│   └── vector_store.py        # Document retrieval system
 │
-├── 📂 models/
-│   ├── llm_pipeline.py          # LLM conversation pipeline
-│   └── predictive_model.py      # ML scoring model
-│   └── vector_store.py          # FAISS vector database
+├── integrations/
+│   ├── hubspot.py             # HubSpot CRM connector
+│   ├── salesforce.py          # Salesforce CRM connector
+│   └── manager.py             # Integration orchestrator
 │
-├── 📂 integrations/
-│   ├── hubspot.py               # HubSpot integration
-│   ├── salesforce.py            # Salesforce integration
-│   └── manager.py               # CRM manager
+├── data/
+│   ├── product_docs/          # Product documentation
+│   ├── case_studies/          # Customer success stories
+│   ├── competitor_battlecards/# Competitive intelligence
+│   └── training_data/         # ML training datasets
 │
-├── 📂 data/
-│   ├── product_docs/            # Product documentation
-│   ├── case_studies/            # Customer success stories
-│   ├── competitor_battlecards/  # Competitor information
-│   └── training_data/           # CRM training datasets
-│
-├── 📂 utils/
-│   └── logging.py               # Logging utilities
-│
-└── 📂 docs/
-    └── API_DOCUMENTATION.md
+└── utils/
+    └── logging.py             # Logging utilities
 ```
 
----
+## Configuration & Customization
 
-## 🎯 Use Cases
+### Model Settings
+Modify `config/settings.py` to adjust model parameters:
 
-<div align="center">
+```python
+# Language model configuration
+LLM_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
-| Industry | Use Case | Impact |
-|----------|----------|--------|
-| 🏢 **SaaS** | Qualify inbound leads automatically | 300% ↑ lead quality |
-| 💼 **B2B Sales** | Prioritize high-intent prospects | 50% ↓ qualification time |
-| 🎓 **EdTech** | Identify serious buyers vs researchers | 18% conversion rate |
-| 🏥 **HealthTech** | Screen enterprise opportunities | 90% cost reduction |
+# Text processing settings
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 50
+MAX_TOKENS = 2048
+```
 
-</div>
+### Conversation Templates
+Update `config/prompts.py` to customize:
+- System behavior prompts
+- Qualification question sequences
+- Response formatting templates
 
----
+### Knowledge Base Management
+Organize your content in the `data/` directory:
+- `product_docs/` - Technical specifications and feature descriptions
+- `case_studies/` - Customer success stories and use cases
+- `competitor_battlecards/` - Competitive positioning information
 
-## 📊 Performance Metrics
+## Testing
 
-<div align="center">
-
-### Model Accuracy
-
-| Metric | Score |
-|--------|-------|
-| 🎯 Intent Classification | **~85%** accuracy |
-| 📈 Lead Scoring Correlation | **~80%** with actual conversion |
-| ⭐ Response Quality | **4.2/5** user satisfaction |
-| ⚡ Response Time | **<2 seconds** per message |
-
-</div>
-
----
-
-## 🧪 Testing
-
-Run the comprehensive test suite:
+Execute the test suite to verify system functionality:
 
 ```bash
 python test_bot.py
 ```
 
-This will verify:
-- ✅ Configuration validation
-- ✅ Vector store functionality
-- ✅ Predictive model
-- ✅ CRM integration
-- ✅ Conversation flow
-- ✅ Sample data processing
+The test suite validates:
+- Configuration loading
+- Model initialization
+- Vector store operations
+- CRM integration endpoints
+- Conversation flow logic
 
----
+## API Integration
 
-## 🎨 Customization
-
-### 🔧 Model Configuration
-
-Edit `config/settings.py`:
-
-```python
-llm_model_name = "mistralai/Mistral-7B-Instruct-v0.2"
-embedding_model_name = "sentence-transformers/all-MiniLM-L6-v2"
-chunk_size = 500
-chunk_overlap = 50
-```
-
-### 📝 Prompt Templates
-
-Edit `config/prompts.py` to customize:
-- System prompts
-- Qualification questions
-- Response formatting
-
-### 📚 Knowledge Base
-
-Add your documents to:
-- `data/product_docs/` - Product information
-- `data/case_studies/` - Customer success stories
-- `data/competitor_battlecards/` - Competitive analysis
-
----
-
-## 🔗 API Integration
-
-### REST API Response Format
+### Response Format
+The system outputs structured JSON for easy integration:
 
 ```json
 {
-  "lead": {
+  "prospect_data": {
     "name": "string|null",
-    "email": "string|null",
+    "email": "string|null", 
     "company": "string|null",
     "role": "string|null",
     "industry": "string|null"
   },
-  "intent": "buy_soon|considering|researching|not_interested",
-  "score": 0-100,
-  "top_signals": ["signal1", "signal2", "..."],
-  "recommended_action": "schedule_demo|send_pricing|nurture_email|send_ROI_report",
-  "explain": "one-sentence rationale",
-  "crm_tags": ["tag1", "tag2", "..."]
+  "qualification_results": {
+    "intent_category": "high_interest|moderate_interest|low_interest|not_qualified",
+    "score": "0-100",
+    "confidence_level": "high|medium|low"
+  },
+  "conversation_insights": {
+    "key_signals": ["array", "of", "signals"],
+    "pain_points": ["identified", "challenges"],
+    "decision_factors": ["important", "criteria"]
+  },
+  "recommendations": {
+    "next_action": "schedule_demo|send_proposal|nurture_sequence|disqualify",
+    "priority_level": "hot|warm|cold",
+    "crm_tags": ["relevant", "tags"]
+  }
 }
 ```
 
----
+## Deployment Options
 
-## 🚀 Deployment
-
-### 🐳 Docker Deployment
-
+### Docker Deployment
 ```dockerfile
 FROM python:3.9-slim
 WORKDIR /app
@@ -413,122 +284,62 @@ EXPOSE 7860
 CMD ["python", "app.py"]
 ```
 
-### ☁️ Hugging Face Spaces
+### Cloud Platform Deployment
+The application can be deployed on various platforms:
+- Hugging Face Spaces (Gradio-compatible)
+- AWS EC2 with Docker
+- Google Cloud Run
+- Azure Container Instances
 
-1. Create a new Space with Gradio SDK
-2. Upload all project files
-3. Deploy automatically
+## Troubleshooting
 
----
+### Common Issues
 
-## 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| 📖 [Setup Guide](SETUP_GUIDE.md) | Detailed setup instructions |
-| 🔧 [Troubleshooting](TROUBLESHOOTING.md) | Common issues and solutions |
-
-| 🔌 [API Documentation](docs/API_DOCUMENTATION.md) | API reference and examples |
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how:
-
-1. 🍴 Fork the repository
-2. 🌿 Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
-5. 🔀 Open a Pull Request
-
----
-
-## 🐛 Troubleshooting
-
-<details>
-<summary><b>❌ Module not found errors</b></summary>
-
+**Module Import Errors**
 ```bash
 pip install -r requirements.txt
 ```
 
-</details>
+**Memory Issues**
+- Close unnecessary applications
+- Adjust `llm_max_length` in configuration
+- Consider using a smaller language model
 
-<details>
-<summary><b>💾 Out of memory errors</b></summary>
-
-- Close other applications
-- Reduce `llm_max_length` in `config/settings.py`
-- Use a smaller model
-
-</details>
-
-<details>
-<summary><b>🔒 Model access errors</b></summary>
-
-Set your Hugging Face token:
+**Authentication Errors**
 ```bash
 export HUGGINGFACE_TOKEN=your_token_here
 ```
 
-</details>
+Refer to configuration files and logs for additional troubleshooting guidance.
 
-See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for more solutions.
+## Contributing
 
----
+Contributions are welcome! Please follow these steps:
 
-## 📈 Roadmap
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-- [ ] 🌍 Multi-language support
-- [ ] 📱 Mobile app
-- [ ] 🔔 Webhook integration
-- [ ] 📊 Advanced analytics dashboard
-- [ ] 🎨 Custom model training UI
-- [ ] 🔄 Real-time collaboration features
+## Development Roadmap
 
----
+- Multi-language conversation support
+- Enhanced analytics dashboard
+- Webhook integration capabilities
+- Mobile-responsive interface
+- Advanced model fine-tuning tools
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
+## Author
 
-## 🌟 Star History
-
-<div align="center">
-
-[![Star History Chart](https://api.star-history.com/svg?repos=RohithCherukuri816/AI-Lead-Qualification-Bot&type=Date)](https://star-history.com/#RohithCherukuri816/AI-Lead-Qualification-Bot&Date)
-
-</div>
-
----
-
-## 💖 Support
-
-<div align="center">
-
-If you find this project helpful, please consider:
-
-⭐ **Starring** the repository
-
-🐛 **Reporting** issues
-
-🤝 **Contributing** to the project
-
-📢 **Sharing** with others
+**Rohith Cherukuri**
+- GitHub: [@RohithCherukuri816](https://github.com/RohithCherukuri816)
+- Repository: [AI-Lead-Qualification-Bot](https://github.com/RohithCherukuri816/AI-Lead-Qualification-Bot)
 
 ---
 
-### Made with ❤️ by [Rohith Cherukuri](https://github.com/RohithCherukuri816)
-
-<p>
-  <a href="https://github.com/RohithCherukuri816">
-    <img src="https://img.shields.io/github/followers/RohithCherukuri816?label=Follow&style=social" alt="GitHub followers">
-  </a>
-</p>
-
-**Built with 100% Open-Source Technologies | No External API Dependencies**
-
-</div>
+*Built with open-source technologies and designed for scalable lead qualification automation.*
